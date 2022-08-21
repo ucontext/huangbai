@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'archive.apps.ArchiveConfig'
 ]
 
 MIDDLEWARE = [
@@ -131,32 +132,32 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 自定义配置部分
 # 配置redis数据库作为缓存后端
 
-CACHES = {
-    "default": {  # 存储省市区数据
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/0",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    },
-    "session": {  # 存储session
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    },
-    "verify_codes": {  # 存储验证码
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/2",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
-
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-SESSION_CACHE_ALIAS = "session"
+# CACHES = {
+#     "default": {  # 存储省市区数据
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/0",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     },
+#     "session": {  # 存储session
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     },
+#     "verify_codes": {  # 存储验证码
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/2",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
+#
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# SESSION_CACHE_ALIAS = "session"
 
 # 日志
 LOGGING = {
@@ -207,7 +208,7 @@ REST_FRAMEWORK = {
 
 # 修改Django认证系统导用户模型类，需要在sys.path中修改导包路径
 # 不是很理解 users.User，应该是users.models.User
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'users.User'
 
 # CORS 追加白名单
 CORS_ORIGIN_WHITLIST = {
